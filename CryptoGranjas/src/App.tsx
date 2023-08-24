@@ -1,6 +1,49 @@
 import { styled } from "styled-components"
 
 
+
+
+[{
+  granja:"ceuta",
+  propietario:"alejandro",
+  direccion:'xxxxxx',
+  hosting:[
+  { id: 1, model: 'Model A', serialNumber: 'SN001', user: 'User 1', wallet: 'Wallet A', pool: 'Pool X' },
+  { id: 2, model: 'Model B', serialNumber: 'SN002', user: 'User 2', wallet: 'Wallet B', pool: 'Pool Y' },
+]
+},
+{
+  granja:"ceuta",
+  propietario:"alejandro",
+  direccion:'xxxxxx',
+  maquinas:[
+  { id: 1, model: 'Model A', serialNumber: 'SN001', user: 'User 1', wallet: 'Wallet A', pool: 'Pool X' },
+  { id: 2, model: 'Model B', serialNumber: 'SN002', user: 'User 2', wallet: 'Wallet B', pool: 'Pool Y' },
+]
+},
+{
+  granja:"ceuta",
+  propietario:"alejandro",
+  direccion:'xxxxxx',
+  maquinas:[
+  { id: 1, model: 'Model A', serialNumber: 'SN001', user: 'User 1', wallet: 'Wallet A', pool: 'Pool X' },
+  { id: 2, model: 'Model B', serialNumber: 'SN002', user: 'User 2', wallet: 'Wallet B', pool: 'Pool Y' },
+]
+},
+{
+  granja:"ceuta",
+  propietario:"alejandro",
+  direccion:'xxxxxx',
+  maquinas:[
+  { id: 1, model: 'Model A', serialNumber: 'SN001', user: 'User 1', wallet: 'Wallet A', pool: 'Pool X' },
+  { id: 2, model: 'Model B', serialNumber: 'SN002', user: 'User 2', wallet: 'Wallet B', pool: 'Pool Y' },
+]
+}
+]
+
+
+
+
 function App() {
 
   return (
