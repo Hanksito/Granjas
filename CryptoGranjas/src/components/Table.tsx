@@ -1,65 +1,103 @@
 import styled from 'styled-components';
+import { Machine } from './Card';
 
-interface TableDataItem {
-    id: number;
-    model: string;
-    serialNumber: string;
-    user: string;
-    wallet: string;
-    pool: string;
+interface ModalProps {
+  isOpen: boolean;
+  onClose: () => void;
+  data: Machine[]; 
+}
+
+const ModalWrapper = styled.div`
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+`;
+
+const ModalContent = styled.div`
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
+  padding: 20px;
+  width: 90%;
+  max-height: 90vh;
+  overflow-y: auto;
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  /* Añade un margen superior para alejarlo de la parte superior */
+  margin-top: 20px; /* Puedes ajustar este valor según tus necesidades */
+`;
+
+const CloseButton = styled.button`
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 18px;
+`;
+
+const Table = styled.table`
+  width: 100%;
+  border-collapse: collapse;
+`;
+
+const Th = styled.th`
+  background-color: #f2f2f2;
+  padding: 8px;
+  text-align: left;
+`;
+
+const Td = styled.td`
+  padding: 8px;
+  border-bottom: 1px solid #ddd;
+`;
+
+const Modal: React.FC<ModalProps> = ({ isOpen, onClose, data }) => {
+  if (!isOpen) {
+    return null;
   }
 
-  interface TableProps {
-    data: TableDataItem[];
-  }
-
-const Table: React.FC<TableProps> = ({data}) => {
   return (
-    
-        <TableContainer> 
+    <ModalWrapper>
+      <ModalContent>
+        <CloseButton onClick={onClose}>&times;</CloseButton>
+        <Table>
           <thead>
             <tr>
-              <TableHeader>ID</TableHeader>
-              <TableHeader>Model</TableHeader>
-              <TableHeader>Serial Number</TableHeader>
-              <TableHeader>User</TableHeader>
-              <TableHeader>Wallet</TableHeader>
-              <TableHeader>Pool</TableHeader>
+              <Th>ID</Th>
+              <Th>Modelo</Th>
+              <Th>Número de Serie</Th>
+              <Th>Usuario</Th>
+              <Th>Wallet</Th>
+              <Th>Pool</Th>
             </tr>
           </thead>
           <tbody>
-            {data.map(item => (
-              <tr key={item.id}>
-                <TableData>{item.id}</TableData>
-                <TableData>{item.model}</TableData>
-                <TableData>{item.serialNumber}</TableData>
-                <TableData>{item.user}</TableData>
-                <TableData>{item.wallet}</TableData>
-                <TableData>{item.pool}</TableData>
+            {data.map((machine) => (
+              <tr key={machine.id}>
+                <Td>{machine.id}</Td>
+                <Td>{machine.model}</Td>
+                <Td>{machine.serialNumber}</Td>
+                <Td>{machine.user}</Td>
+                <Td>{machine.wallet}</Td>
+                <Td>{machine.pool}</Td>
               </tr>
             ))}
           </tbody>
-        </TableContainer>
-  )
-}
+        </Table>
+      </ModalContent>
+    </ModalWrapper>
+  );
+};
 
-export const TableContainer = styled.table`
-  width: 100%;
-  border-collapse: collapse;
-  margin-top: 20px;
-  border: 1px solid #ccc;
-  font-family: Arial, sans-serif;
-`;
-
-export const TableHeader = styled.th`
-  background-color: #f5f5f5;
-  padding: 10px;
-  border: 1px solid #ccc;
-`;
-
-export const TableData = styled.td`
-  padding: 10px;
-  border: 1px solid #ccc;
-`;
-
-export default Table
+export default Modal;
